@@ -1,3 +1,13 @@
+# SDK storage
+SDK/
+
+# Editor
+.vscode/
+neo_watch.emSession
+
+# Output folders
+Output/
+ 
 # Prerequisites
 *.d
 
