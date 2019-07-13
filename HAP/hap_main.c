@@ -14,9 +14,15 @@
 //     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /* INCLUDES */
+#include "hap_pub.h"
 
 /* DEFINES */
 
 /* PROCEDURES */
 
 /* FUNCTION DEFINITIONS */
+
+void HAP_init()
+{
+    
+}

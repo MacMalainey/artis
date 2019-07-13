@@ -442,6 +442,7 @@
           <state>$PROJ_DIR$\SDK\modules\nrfx\hal</state>
           <state>$PROJ_DIR$\SDK\modules\nrfx\mdk</state>
           <state>$PROJ_DIR$\config</state>
+          <state>$PROJ_DIR$\HAP</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -831,6 +832,7 @@
           <state>$PROJ_DIR$\SDK\modules\nrfx\hal</state>
           <state>$PROJ_DIR$\SDK\modules\nrfx\mdk</state>
           <state>$PROJ_DIR$\config</state>
+          <state>$PROJ_DIR$\HAP</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1265,8 +1267,9 @@
     <name>$PROJ_DIR$\SDK\components\libraries\bsp\bsp.c</name>    </file>    <file>
     <name>$PROJ_DIR$\SDK\components\libraries\bsp\bsp_btn_ble.c</name>    </file>  </group>  <group>
   <name>Application</name>    <file>
-    <name>$PROJ_DIR$\..\main.c</name>    </file>    <file>
+    <name>$PROJ_DIR$\main.c</name>    </file>    <file>
     <name>$PROJ_DIR$\config\sdk_config.h</name>    </file>  </group>  <group>
+    <name>$PROJ_DIR$\HAP\hap_config.h</name>    </file>  </group>  <group>
   <name>nRF_Segger_RTT</name>    <file>
     <name>$PROJ_DIR$\SDK\external\segger_rtt\SEGGER_RTT.c</name>    </file>    <file>
     <name>$PROJ_DIR$\SDK\external\segger_rtt\SEGGER_RTT_Syscalls_IAR.c</name>    </file>    <file>
