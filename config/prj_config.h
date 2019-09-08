@@ -1,0 +1,16 @@
+
+
+#ifndef PRJ_CONFIG_H
+#define PRJ_CONFIG_H
+
+/* BUTTON INPUT */
+#define BTN_1_INTERRUPT_PIN 10
+#define BTN_2_INTERRUPT_PIN 15
+
+/* VIBRATOR */
+#define VIB_PULSE_LENGTH_MS 100
+
+#define VIB_PIN_PORT 1
+#define VIB_PIN 5
+
+#endif
