@@ -15,7 +15,7 @@
 
 /* INCLUDES */
 
-/* DEFINES */
+/* DEFINES AND TYPES */
 
 /* CONSTANTS */
 

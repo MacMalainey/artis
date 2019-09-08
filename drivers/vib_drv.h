@@ -18,16 +18,16 @@
 
 /* INCLUDES */
 
-/* DEFINES */
+/* DEFINES AND TYPES */
 
 /* VARIABLES */
 
 /* PROCEDURES */
 
-void vib_drv_cfg( unsigned char pin );
+void vib_drv_init(uint32_t pin, uint32_t port);
 
-void vib_drv_set( unsigned char pin );
+void vib_drv_set(uint32_t pin, uint32_t port);
 
-void vib_drv_clear( unsigned char pin );
+void vib_drv_clear(uint32_t pin, uint32_t port);
 
 #endif

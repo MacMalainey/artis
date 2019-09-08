@@ -27,21 +27,21 @@
 /* FUNCTION DEFINITIONS */
 
 // Initialize the vibrator pin
-void vib_drv_cfg( unsigned char pin )
+void vib_drv_init(uint32_t pin, uint32_t port)
 {
-    nrf_gpio_cfg_output( pin );
+    nrf_gpio_cfg_output(NRF_GPIO_PIN_MAP(port, pin));
 }
 
 // Set the vibrator pin to HIGH
-void vib_drv_set( unsigned char pin )
+void vib_drv_set(uint32_t pin, uint32_t port)
 {
-    nrf_gpio_pin_set( pin );
+    nrf_gpio_pin_set(NRF_GPIO_PIN_MAP(port, pin));
 }
 
 // Clear the vibrator pin to LOW
-void vib_drv_clear( unsigned char pin )
+void vib_drv_clear(uint32_t pin, uint32_t port)
 {
-    nrf_gpio_pin_clear( pin );
+    nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(port, pin));
 }
 
 

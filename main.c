@@ -26,47 +26,55 @@
 /* FUNCTION DEFINITIONS */
 
 #include <stdbool.h>
-#include "nrf_delay.h"
 #include "nrfx_gpiote.h"
 #include "nrf_gpiote.h"
-#include "nrf_gpio.h"
+
+#include "app_simple_timer.h"
 
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
-static void toggle_red( nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action );
+static void toggle_red(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+static void nrf_init(void);
 
 int main(void)
+{
+    nrf_init();
+
+    const uint32_t LED_PIN = NRF_GPIO_PIN_MAP(1, 10);
+    nrfx_gpiote_in_config_t in_event_config = NRFX_GPIOTE_CONFIG_IN_SENSE_HITOLO(false);
+    in_event_config.pull = NRF_GPIO_PIN_PULLUP;
+
+    nrf_gpio_cfg_output(LED_PIN);
+
+    nrfx_gpiote_in_init(31, &in_event_config, &toggle_red);
+
+    nrfx_gpiote_in_event_enable(31, true);
+
+}
+
+static void toggle_red(nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    if( pin == 31 && NRF_GPIOTE_POLARITY_HITOLO == action )
+    {
+        const uint32_t LED_PIN = NRF_GPIO_PIN_MAP(1, 10);
+        nrf_gpio_pin_set(LED_PIN);
+    }
+}
+
+static void nrf_init()
 {
     // Enable Logging
     NRF_LOG_INIT(NULL);
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 
-    NRF_LOG_INFO( "HELLO WORLD!!" );
+    NRF_LOG_INFO("INITIALIZING SDK");
 
-    NRF_LOG_PROCESS();
+    // App Simple Timer
+    app_simple_timer_init();
 
-
-    const uint32_t LED_PIN = NRF_GPIO_PIN_MAP( 1, 10 );
-    nrfx_gpiote_in_config_t in_event_config = NRFX_GPIOTE_CONFIG_IN_SENSE_HITOLO( false );
-    in_event_config.pull = NRF_GPIO_PIN_PULLUP;
-   
     nrfx_gpiote_init();
 
-    nrf_gpio_cfg_output( LED_PIN );
-
-    nrfx_gpiote_in_init( 31, &in_event_config, &toggle_red );
-
-    nrfx_gpiote_in_event_enable( 31, true );
-
-}
-
-static void toggle_red( nrfx_gpiote_pin_t pin, nrf_gpiote_polarity_t action )
-{
-    if( pin == 31 && NRF_GPIOTE_POLARITY_HITOLO == action )
-    {
-        const uint32_t LED_PIN = NRF_GPIO_PIN_MAP( 1, 10 );
-        nrf_gpio_pin_set( LED_PIN );
-    }
+    NRF_LOG_PROCESS();
 }
