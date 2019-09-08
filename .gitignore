@@ -3,3 +3,6 @@ build/
 
 # SDK directory
 SDK/
+
+# Text editor directories
+.vscode/
