@@ -42,6 +42,7 @@ INC_FOLDERS += \
   $(PROJ_DIR) \
   $(PROJ_DIR)/drivers \
   $(PROJ_DIR)/modules \
+  $(PROJ_DIR)/misc \
   $(SDK_ROOT)/components/softdevice/mbr/nrf52840/headers \
   $(SDK_ROOT)/components/libraries/strerror \
   $(SDK_ROOT)/components/toolchain/cmsis/include \

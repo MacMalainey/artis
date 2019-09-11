@@ -14,6 +14,8 @@
 //     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /* INCLUDES */
+#include "prj_types.h"
+
 #include "nrf_gpio.h"
 
 /* DEFINES */
@@ -27,19 +29,20 @@
 /* FUNCTION DEFINITIONS */
 
 // Initialize the vibrator pin
-void vib_drv_init(uint32_t pin, uint32_t port)
+void vib_drv_init(uint32 pin, uint32 port)
 {
+    
     nrf_gpio_cfg_output(NRF_GPIO_PIN_MAP(port, pin));
 }
 
 // Set the vibrator pin to HIGH
-void vib_drv_set(uint32_t pin, uint32_t port)
+void vib_drv_set(uint32 pin, uint32 port)
 {
     nrf_gpio_pin_set(NRF_GPIO_PIN_MAP(port, pin));
 }
 
 // Clear the vibrator pin to LOW
-void vib_drv_clear(uint32_t pin, uint32_t port)
+void vib_drv_clear(uint32 pin, uint32 port)
 {
     nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(port, pin));
 }

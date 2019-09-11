@@ -71,9 +71,6 @@ static void nrf_init()
 
     NRF_LOG_INFO("INITIALIZING SDK");
 
-    // App Simple Timer
-    app_simple_timer_init();
-
     nrfx_gpiote_init();
 
     NRF_LOG_PROCESS();

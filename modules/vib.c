@@ -15,7 +15,10 @@
 
 /* INCLUDES */
 
-#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "prj_types.h"
 #include "prj_config.h"
 
 #include "app_simple_timer.h"
@@ -24,13 +27,15 @@
 
 /* DEFINES AND TYPES */
 
-typedef struct {
+struct vib_task_info;
+struct vib_task_info {
 
     unsigned char pulse_index;
     unsigned short int * pulses;
-    vib_task_info * next_task;
+    struct vib_task_info * next_task;
 
-} vib_task_info;
+};
+typedef struct vib_task_info vib_task_info;
 
 /* CONSTANTS */
 
@@ -40,7 +45,7 @@ static vib_task_info * current_task;
 
 /* PROCEDURES */
 
-static void timer_callback(void)
+static void timer_callback(void);
 
 /* FUNCTION DEFINITIONS */
 
@@ -50,13 +55,13 @@ void vib_init(void)
     current_task = NULL;
 }
 
-void vib_pulse_many(unsigned short int * pulses)
+void vib_pulse_many(uint16 * pulses)
 {
     // Copy memory so that it doesn't get pushed off the stack
-    unsigned short int * task_pulses = (unsigned short int *)malloc(sizeof(pulses));
+    uint16 * task_pulses = (uint16 *)malloc(sizeof(pulses));
     memcpy(task_pulses, pulses, sizeof(pulses));
 
-    vib_task_info * new_task = malloc(sizeof(new_task));
+    vib_task_info * new_task = malloc(sizeof(vib_task_info));
     new_task->pulses = task_pulses;
     new_task->pulse_index = 0;
     new_task->next_task = NULL;
@@ -81,7 +86,7 @@ void vib_pulse_many(unsigned short int * pulses)
     
 }
 
-void vib_pulse(unsigned short int pulse)
+void vib_pulse(uint32 pulse)
 {
     unsigned short int pulses[1];
     pulses[0] = pulse;

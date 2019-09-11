@@ -18,16 +18,18 @@
 
 /* INCLUDES */
 
+#include "prj_types.h"
+
 /* DEFINES AND TYPES */
 
 /* VARIABLES */
 
 /* PROCEDURES */
 
-void vib_drv_init(uint32_t pin, uint32_t port);
+void vib_drv_init(uint32 pin, uint32 port);
 
-void vib_drv_set(uint32_t pin, uint32_t port);
+void vib_drv_set(uint32 pin, uint32 port);
 
-void vib_drv_clear(uint32_t pin, uint32_t port);
+void vib_drv_clear(uint32 pin, uint32 port);
 
 #endif
