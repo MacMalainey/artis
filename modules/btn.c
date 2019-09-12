@@ -15,7 +15,11 @@
 
 /* INCLUDES */
 
-/* DEFINES */
+#include "prj_types.h"
+
+#include "btn_drv.h"
+
+/* DEFINES AND TYPES */
 
 /* CONSTANTS */
 
@@ -24,36 +28,3 @@
 /* PROCEDURES */
 
 /* FUNCTION DEFINITIONS */
-
-#include <stdbool.h>
-#include "prj_types.h"
-
-#include "nrfx_gpiote.h"
-#include "nrf_gpiote.h"
-
-#include "app_simple_timer.h"
-
-#include "nrf_log.h"
-#include "nrf_log_ctrl.h"
-#include "nrf_log_default_backends.h"
-
-static void nrf_init(void);
-
-int main(void)
-{
-    nrf_init();
-
-}
-
-static void nrf_init()
-{
-    // Enable Logging
-    NRF_LOG_INIT(NULL);
-    NRF_LOG_DEFAULT_BACKENDS_INIT();
-
-    NRF_LOG_INFO("INITIALIZING SDK");
-
-    nrfx_gpiote_init();
-
-    NRF_LOG_PROCESS();
-}

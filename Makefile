@@ -33,6 +33,8 @@ SRC_FILES += \
   $(PROJ_DIR)/main.c \
   $(PROJ_DIR)/drivers/vib_drv.c \
   $(PROJ_DIR)/modules/vib.c \
+  $(PROJ_DIR)/drivers/btn_drv.c \
+  $(PROJ_DIR)/modules/btn.c \
   $(SDK_ROOT)/modules/nrfx/mdk/system_nrf52840.c \
 
 # Include folders common to all targets

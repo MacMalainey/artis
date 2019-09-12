@@ -13,47 +13,29 @@
 //     You should have received a copy of the GNU General Public License
 //     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+#ifndef BTN_DRV_H
+#define BTN_DRV_H
+
 /* INCLUDES */
+
+#include "prj_types.h"
+#include "nrfx_gpiote.h"
+#include "nrf_gpio.h"
 
 /* DEFINES */
 
-/* CONSTANTS */
+typedef nrfx_gpiote_pin_t btn_drv_pin_t;
+
+typedef void (*btn_event_callback)(btn_drv_pin_t pin);
 
 /* VARIABLES */
 
 /* PROCEDURES */
 
-/* FUNCTION DEFINITIONS */
+void btn_drv_init_pin(btn_drv_pin_t pin);
 
-#include <stdbool.h>
-#include "prj_types.h"
+void btn_drv_uninit_pin(btn_drv_pin_t pin);
 
-#include "nrfx_gpiote.h"
-#include "nrf_gpiote.h"
+void btn_drv_set_callback(btn_event_callback callback);
 
-#include "app_simple_timer.h"
-
-#include "nrf_log.h"
-#include "nrf_log_ctrl.h"
-#include "nrf_log_default_backends.h"
-
-static void nrf_init(void);
-
-int main(void)
-{
-    nrf_init();
-
-}
-
-static void nrf_init()
-{
-    // Enable Logging
-    NRF_LOG_INIT(NULL);
-    NRF_LOG_DEFAULT_BACKENDS_INIT();
-
-    NRF_LOG_INFO("INITIALIZING SDK");
-
-    nrfx_gpiote_init();
-
-    NRF_LOG_PROCESS();
-}
+#endif

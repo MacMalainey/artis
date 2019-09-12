@@ -21,8 +21,6 @@
 #include "prj_types.h"
 #include "prj_config.h"
 
-#include "app_simple_timer.h"
-
 #include "vib_drv.h"
 
 /* DEFINES AND TYPES */
@@ -30,8 +28,8 @@
 struct vib_task_info;
 struct vib_task_info {
 
-    unsigned char pulse_index;
-    unsigned short int * pulses;
+    uint8 next_pulse;
+    uint16 * pulses;
     struct vib_task_info * next_task;
 
 };
@@ -46,6 +44,8 @@ static vib_task_info * current_task;
 /* PROCEDURES */
 
 static void timer_callback(void);
+
+static void trigger_pulse(uint16 length);
 
 /* FUNCTION DEFINITIONS */
 
@@ -63,7 +63,7 @@ void vib_pulse_many(uint16 * pulses)
 
     vib_task_info * new_task = malloc(sizeof(vib_task_info));
     new_task->pulses = task_pulses;
-    new_task->pulse_index = 0;
+    new_task->next_pulse = 0;
     new_task->next_task = NULL;
 
     if (current_task == NULL)
@@ -83,17 +83,31 @@ void vib_pulse_many(uint16 * pulses)
 
         stack_task->next_task = new_task;
     }
-    
+
 }
 
-void vib_pulse(uint32 pulse)
+void vib_pulse(uint16 pulse)
 {
-    unsigned short int pulses[1];
+    uint16 pulses[1];
     pulses[0] = pulse;
     vib_pulse_many(pulses);
 }
 
 static void timer_callback(void)
 {
-    
+    if (current_task->next_pulse < ARRAY_LENGTH(current_task->pulses, uint16))
+    {
+        trigger_pulse(current_task->pulses[current_task->next_pulse]);
+        current_task->next_pulse++;
+    }
+    else
+    {
+        current_task = current_task->next_task;
+    }
+
+}
+
+static void trigger_pulse(uint16 length)
+{
+
 }

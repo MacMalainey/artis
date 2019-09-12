@@ -26,4 +26,6 @@ typedef short int sint16;
 typedef int sint32;
 typedef long int sint42;
 
+#define ARRAY_LENGTH( arr, type ) sizeof( arr ) / sizeof( type )
+
 #endif

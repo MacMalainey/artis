@@ -13,47 +13,21 @@
 //     You should have received a copy of the GNU General Public License
 //     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+#ifndef BTN_H
+#define BTN_H
+
 /* INCLUDES */
+
+#include "prj_config.h"
 
 /* DEFINES */
 
-/* CONSTANTS */
+#define BTN_1 BTN_1_INTERRUPT_PIN
+#define BTN_2 BTN_2_INTERRUPT_PIN
+#define BTN_S BTN_S_INTERRUPT_PIN
 
 /* VARIABLES */
 
 /* PROCEDURES */
 
-/* FUNCTION DEFINITIONS */
-
-#include <stdbool.h>
-#include "prj_types.h"
-
-#include "nrfx_gpiote.h"
-#include "nrf_gpiote.h"
-
-#include "app_simple_timer.h"
-
-#include "nrf_log.h"
-#include "nrf_log_ctrl.h"
-#include "nrf_log_default_backends.h"
-
-static void nrf_init(void);
-
-int main(void)
-{
-    nrf_init();
-
-}
-
-static void nrf_init()
-{
-    // Enable Logging
-    NRF_LOG_INIT(NULL);
-    NRF_LOG_DEFAULT_BACKENDS_INIT();
-
-    NRF_LOG_INFO("INITIALIZING SDK");
-
-    nrfx_gpiote_init();
-
-    NRF_LOG_PROCESS();
-}
+#endif
