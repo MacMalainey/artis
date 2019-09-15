@@ -22,9 +22,11 @@
 
 /* DEFINES */
 
-#define BTN_1 BTN_1_INTERRUPT_PIN
-#define BTN_2 BTN_2_INTERRUPT_PIN
-#define BTN_S BTN_S_INTERRUPT_PIN
+#define BTN_1 0
+#define BTN_2 1
+#define BTN_S 2
+
+typedef void (*btn_callback_t)();
 
 /* VARIABLES */
 

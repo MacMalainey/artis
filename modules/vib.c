@@ -102,7 +102,19 @@ static void timer_callback(void)
     }
     else
     {
+        vib_task_info * free_task = current_task;
+
+        // Go to next task
         current_task = current_task->next_task;
+
+        // Free memory
+        free(free_task);
+
+        if (current_task != NULL)
+        {
+            trigger_pulse(current_task->pulses[current_task->next_pulse]);
+            current_task->next_pulse++;
+        }
     }
 
 }

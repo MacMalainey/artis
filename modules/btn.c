@@ -16,7 +16,9 @@
 /* INCLUDES */
 
 #include "prj_types.h"
+#include "prj_config.h"
 
+#include "btn.h"
 #include "btn_drv.h"
 
 /* DEFINES AND TYPES */
@@ -25,6 +27,50 @@
 
 /* VARIABLES */
 
+static bool is_init = false;
+
+static btn_callback_t event_callbacks[3];
+
 /* PROCEDURES */
 
+static void driver_callback();
+
 /* FUNCTION DEFINITIONS */
+
+void btn_init()
+{
+    btn_drv_set_callback(&driver_callback);
+
+    // Initialize the button interrupts
+    btn_drv_init_pin(BTN_1_INTERRUPT_PIN);
+    btn_drv_init_pin(BTN_2_INTERRUPT_PIN);
+    btn_drv_init_pin(BTN_S_INTERRUPT_PIN);
+
+    is_init = true;
+}
+
+void btn_set_callback(btn_callback_t callback, uint8 pin)
+{
+    event_callbacks[pin] = callback;
+}
+
+static void driver_callback(btn_drv_pin_t pin)
+{
+    if (pin == BTN_1_INTERRUPT_PIN)
+    {
+        event_callbacks[BTN_1]();
+    }
+    else if (pin == BTN_2_INTERRUPT_PIN)
+    {
+        event_callbacks[BTN_2]();
+    }
+    else if (pin == BTN_S_INTERRUPT_PIN)
+    {
+        event_callbacks[BTN_S]();
+    }
+    else
+    {
+        // TODO add assert
+    }
+
+}

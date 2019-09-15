@@ -15,7 +15,7 @@
 
 /* INCLUDES */
 
-#include <stdbool.h>
+
 
 #include "prj_types.h"
 
@@ -45,6 +45,9 @@ void btn_drv_init_pin(btn_drv_pin_t pin)
     in_event_config.pull = NRF_GPIO_PIN_PULLUP;
 
     nrfx_gpiote_in_init(pin, &in_event_config, &handle_interrupt);
+
+    // TODO add logging if the callback has not been set yet
+    // TODO add logging for error with gpiote init
 }
 
 void btn_drv_uninit_pin(btn_drv_pin_t pin)

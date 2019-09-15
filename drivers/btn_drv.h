@@ -19,6 +19,7 @@
 /* INCLUDES */
 
 #include "prj_types.h"
+
 #include "nrfx_gpiote.h"
 #include "nrf_gpio.h"
 
