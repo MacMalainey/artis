@@ -29,7 +29,7 @@
 
 static bool is_init = false;
 
-static btn_callback_t event_callbacks[3];
+static btn_callback_t event_callback;
 
 /* PROCEDURES */
 
@@ -49,28 +49,12 @@ void btn_init()
     is_init = true;
 }
 
-void btn_set_callback(btn_callback_t callback, uint8 pin)
+void btn_set_callback(btn_callback_t callback)
 {
-    event_callbacks[pin] = callback;
+    event_callback = callback;
 }
 
 static void driver_callback(btn_drv_pin_t pin)
 {
-    if (pin == BTN_1_INTERRUPT_PIN)
-    {
-        event_callbacks[BTN_1]();
-    }
-    else if (pin == BTN_2_INTERRUPT_PIN)
-    {
-        event_callbacks[BTN_2]();
-    }
-    else if (pin == BTN_S_INTERRUPT_PIN)
-    {
-        event_callbacks[BTN_S]();
-    }
-    else
-    {
-        // TODO add assert
-    }
-
+    event_callbacks(pin);
 }

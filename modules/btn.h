@@ -22,11 +22,13 @@
 
 /* DEFINES */
 
-#define BTN_1 0
-#define BTN_2 1
-#define BTN_S 2
+typedef enum {
+    btn_1 = BTN_1_INTERRUPT_PIN,
+    btn_2 = BTN_2_INTERRUPT_PIN,
+    btn_s = BTN_S_INTERRUPT_PIN
+} btn_t;
 
-typedef void (*btn_callback_t)();
+typedef void (*btn_callback_t)(btn_t);
 
 /* VARIABLES */
 
